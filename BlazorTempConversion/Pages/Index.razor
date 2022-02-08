@@ -1,0 +1,99 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to the Temperature Conversion App!
+
+<div class="@(error?"d-block":"d-none") alert alert-danger">
+    From and To inputs must be one of the following: Celsius, Kelvin, Fahrenheit.<br>
+    Conversion Value must be a number.
+</div>
+
+<EditForm Model="@forminput" class="form-group container" OnSubmit="@handleSubmit">
+    <div>
+        <h1>From:</h1>
+        <input @bind-value="forminput.From" list="temperatureOptionsLeft" name="temperatureOptionsLeft" placeholder="Select Temperature">
+        <datalist id="temperatureOptionsLeft">
+            <option class="temperatureOption" value="Celsius">Celsius</option>
+            <option class="temperatureOption" value="Fahrenheit">Fahrenheit</option>
+            <option class="temperatureOption" value="Kelvin">Kelvin</option>
+        </datalist>
+    </div>
+    <div class="submit-div">
+        <input type="submit" class="blue-button" value="Convert">   
+        <div class="form-spread m-10">
+            <input type="number" pattern="/^[0-9|\.][0-9]$/" @bind-value="forminput.ConversionValue" class="square-input" max="9999.99"/>
+            <input @bind-value="forminput.ConvertedValue" disabled class="square-input" type="text" name="tempTo" id="tempTo">
+        </div>
+    </div>
+    <div>
+        <h1>To:</h1>
+        <input @bind-value="forminput.To" list="temperatureOptionsRight" name="temperatureOptionsRight" placeholder="Select Temperature">
+        <datalist id="temperatureOptionsRight">
+            <option class="temperatureOption" value="Celsius">Celsius</option>
+            <option class="temperatureOption" value="Fahrenheit">Fahrenheit</option>
+            <option class="temperatureOption" value="Kelvin">Kelvin</option>y
+        </datalist>
+    </div>
+    
+</EditForm>
+
+
+@code {
+    private Conversion conversion = new();
+
+    private FormInput forminput = new();
+    private Conversion.ConversionMode CtoF = Conversion.ConversionMode.Celsius_to_Fahrenheit;
+    private Conversion.ConversionMode KtoF = Conversion.ConversionMode.Kelvin_to_Fahrenheit;
+
+    private Conversion.ConversionMode FtoC = Conversion.ConversionMode.Fahrenheit_to_Celsius;
+
+    private Conversion.ConversionMode CtoK = Conversion.ConversionMode.Celsius_to_Kelvin;
+
+    private Conversion.ConversionMode KtoC = Conversion.ConversionMode.Kelvin_to_Celsius;
+
+    private Conversion.ConversionMode FtoK = Conversion.ConversionMode.Fahrenheit_to_Kelvin;
+
+    private Boolean error = false;
+
+    private void handleSubmit(EditContext editContext)
+    {
+        error = false;
+        if(forminput.From == forminput.Kelvin){
+            
+            if(forminput.To == forminput.Celsius) {
+                forminput.ConvertedValue = conversion.Convert(KtoC, forminput.ConversionValue);
+            } 
+            else if (forminput.To == forminput.Fahrenheit) {
+                forminput.ConvertedValue = conversion.Convert(KtoF, forminput.ConversionValue);
+            }
+            else if (forminput.To == forminput.Kelvin) {
+                forminput.ConvertedValue = forminput.ConversionValue;
+            }
+        } else if(forminput.From == forminput.Celsius){
+            if(forminput.To == forminput.Celsius) {
+                forminput.ConvertedValue = forminput.ConversionValue;
+            } 
+            else if (forminput.To == forminput.Fahrenheit) {
+                forminput.ConvertedValue = conversion.Convert(CtoF, forminput.ConversionValue);
+            }
+            else if (forminput.To == forminput.Kelvin) {
+                forminput.ConvertedValue = conversion.Convert(CtoK, forminput.ConversionValue);
+            }
+        } else if(forminput.From == forminput.Fahrenheit){
+            if(forminput.To == forminput.Celsius) {
+                forminput.ConvertedValue = conversion.Convert(FtoC, forminput.ConversionValue);
+            } 
+            else if (forminput.To == forminput.Fahrenheit) {
+                forminput.ConvertedValue = forminput.ConversionValue;
+            }
+            else if (forminput.To == forminput.Kelvin) {
+                forminput.ConvertedValue = conversion.Convert(FtoK, forminput.ConversionValue);
+            }
+        } else {
+            error = true;
+        }
+    }
+}

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorTempConversion", "BlazorTempConversion.csproj", "{A68A15D1-9AD1-4717-A685-1EE07E662B84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemperatureTests", "..\TemperatureTests\TemperatureTests.csproj", "{EEF1361F-4436-401B-8479-EF2621126D2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A68A15D1-9AD1-4717-A685-1EE07E662B84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A68A15D1-9AD1-4717-A685-1EE07E662B84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A68A15D1-9AD1-4717-A685-1EE07E662B84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A68A15D1-9AD1-4717-A685-1EE07E662B84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEF1361F-4436-401B-8479-EF2621126D2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEF1361F-4436-401B-8479-EF2621126D2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEF1361F-4436-401B-8479-EF2621126D2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEF1361F-4436-401B-8479-EF2621126D2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D7093B04-8497-4159-97A2-7DF045224604}
+	EndGlobalSection
+EndGlobal
